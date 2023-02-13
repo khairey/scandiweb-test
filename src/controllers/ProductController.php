@@ -2,10 +2,16 @@
 
 namespace src\controllers;
 
+use src\config\Database;
+use src\config\Render;
+
 class ProductController
 {
     public static function index()
     {
-        var_dump('hello');
+        $db = new Database();
+        Render::view('home', [
+            'products' => $db->getProducts()
+        ]);
     }
 }
