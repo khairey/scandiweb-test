@@ -1,7 +1,5 @@
 <?php
-
 namespace src\config;
-
 
 define('DB_HOST', 'localhost');
 define('DB_USER', 'root');
