@@ -14,4 +14,9 @@ class ProductController
             'products' => $db->getProducts()
         ]);
     }
+    public static function addProduct()
+    {
+        $db = new Database();
+        Render::view('add-product');
+    }
 }

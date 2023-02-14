@@ -13,4 +13,5 @@ $database = new Database();
 $router = new Router($database);
 
 $router->request('/', [ProductController::class, 'index']);
+$router->request('/add-product', [ProductController::class, 'addProduct']);
 $router->resolve();
