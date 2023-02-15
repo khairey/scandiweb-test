@@ -4,6 +4,7 @@ namespace src\controllers;
 
 use src\config\Database;
 use src\config\Render;
+use src\models\Product;
 
 class ProductController
 {
@@ -17,7 +18,10 @@ class ProductController
     public static function addProduct()
     {
         $db = new Database();
-        Render::view('add-product');
+        $product = new Product;
+        Render::view('add-product', [
+            'product' => $product
+        ]);
     }
     public static function deleteProducts()
     {
