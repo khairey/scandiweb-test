@@ -14,4 +14,5 @@ $router = new Router($database);
 
 $router->request('/', [ProductController::class, 'index']);
 $router->request('/add-product', [ProductController::class, 'addProduct']);
+$router->request('/delete-products', [ProductController::class, 'deleteProducts']);
 $router->resolve();

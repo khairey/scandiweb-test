@@ -8,7 +8,9 @@
                 <span class="fs-4">Product List</span>
             </a>
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-danger me-2">MASS DELETE</button>
+                <form action="/scandiweb-test/delete-products" method="post" id="delete-form" class="d-inline-block">
+                    <button for="delete-form" id="delete-product-btn" class="btn btn-danger me-2" type="submit">MASS DELETE</button>
+                </form>
 
                 <a href="/scandiweb-test/add-product" type="button" class="btn btn-dark">ADD</a>
             </div>
@@ -18,7 +20,7 @@
         <?php foreach ($products as $i => $product) : ?>
             <div class="col-sm-3 mb-4 text-center">
                 <div class="card h-100">
-                    <input class="form-check-input mt-2 ms-3" type="checkbox" value="" id="flexCheckDefault">
+                    <input form="delete-form" class="form-check-input mt-2 ms-3" type="checkbox" name="<?= $product['sku'] ?>">
                     <div class="card-body ">
                         <h5 class="card-title"><?= $product['sku'] ?></h5>
                         <h6 class="card-title"><?= $product['name'] ?></h6>

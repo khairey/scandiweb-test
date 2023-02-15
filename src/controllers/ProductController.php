@@ -19,4 +19,14 @@ class ProductController
         $db = new Database();
         Render::view('add-product');
     }
+    public static function deleteProducts()
+    {
+        if ($_POST) {
+            $db = new Database();
+            foreach ($_POST as $key => $value) {
+                $db->deleteProduct($key);
+            }
+        }
+        header('Location: /scandiweb-test');
+    }
 }
