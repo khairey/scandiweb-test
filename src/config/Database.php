@@ -3,6 +3,7 @@
 namespace src\config;
 
 use PDO;
+use src\models\Product;
 
 class Database
 {
@@ -56,5 +57,16 @@ class Database
         $statement->bindValue(':sku', $sku);
 
         return $statement->execute();
+    }
+    public function createProduct(Product $product)
+    {
+        $statement = $this->pdo->prepare("INSERT INTO products (sku, name, price, type, value)
+                VALUES (:sku, :name, :price, :type, :value)");
+        $statement->bindValue(':sku', $product->sku);
+        $statement->bindValue(':name', $product->name);
+        $statement->bindValue(':price', $product->price);
+        $statement->bindValue(':type', $product->type);
+        $statement->bindValue(':value', $product->value);
+        $statement->execute();
     }
 }

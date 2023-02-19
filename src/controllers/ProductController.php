@@ -18,7 +18,19 @@ class ProductController
     public static function addProduct()
     {
         $db = new Database();
-        $product = new Product;
+        $product = new Product([]);
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $productData = [];
+            foreach ($_POST as $key => $value) {
+                $productData[$key] = $value;
+            }
+            $db = new Database();
+            $product = new Product($productData);
+            // var_dump($product);
+            $db->createProduct($product);
+            header('Location: /scandiweb-test/');
+            exit;
+        }
         Render::view('add-product', [
             'product' => $product
         ]);

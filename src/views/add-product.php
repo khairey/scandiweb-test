@@ -8,13 +8,13 @@
                 <span class="fs-4">Product Add</span>
             </a>
             <div class="col-md-3 text-end">
-                <button type="button" class="btn btn-primary me-2">Save</button>
-                <a href="/scandiweb-test/add-product" type="button" class="btn btn-warning">Cancel</a>
+                <button form="product_form" class="btn btn-primary me-2" type="submit">Save</button>
+                <a href="/scandiweb-test/" type="button" class="btn btn-warning" type="submit">Cancel</a>
             </div>
         </div>
     </header>
     <div class="container">
-        <form method="post" id="product_form" class="needs-validation" novalidate>
+        <form method="post" id="product_form" class="needs-validation" >
             <fieldset>
                 <div class="row mb-3 g-3 align-items-center">
                     <div class="col-sm-2 col-lg-1">
@@ -79,7 +79,7 @@
                         <label for="size" class="col-form-label">Size (MB)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input placeholder="Size in MB" type="number" step="1" min="1" id="size" name="size" class="form-control" >
+                        <input placeholder="Size in MB" type="number" step="1" min="1" id="size" name="size" class="form-control">
                         <div class="invalid-feedback">
                             Please set a valid size.
                         </div>
@@ -95,7 +95,7 @@
                         <label for="size" class="col-form-label">Weight (KG)</label>
                     </div>
                     <div class="col-sm-auto">
-                        <input placeholder="Weight in KG" type="number" step="1" min="1" id="weight" name="weight" class="form-control" >
+                        <input placeholder="Weight in KG" type="number" step="1" min="1" id="weight" name="weight" class="form-control">
                         <div class="invalid-feedback">
                             Please set a valid weight.
                         </div>
