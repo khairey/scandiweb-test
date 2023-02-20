@@ -17,6 +17,7 @@ class ProductController
     }
     public static function addProduct()
     {
+        $errors=array();
         $db = new Database();
         $product = new Product([]);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -26,13 +27,16 @@ class ProductController
             }
             $db = new Database();
             $product = new Product($productData);
-            // var_dump($product);
-            $db->createProduct($product);
-            header('Location: /scandiweb-test/');
-            exit;
+            $errors[] = $product->validateSku($product->sku);
+            if(empty($errors)){
+                $db->createProduct($product);
+                header('Location: /scandiweb-test/');
+                exit;
+            }    
         }
         Render::view('add-product', [
-            'product' => $product
+            'product' => $product,
+            'errors' => $errors,
         ]);
     }
     public static function deleteProducts()

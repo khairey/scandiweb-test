@@ -13,8 +13,17 @@
             </div>
         </div>
     </header>
+    <?php if (!empty($errors)) : ?>
+        <div class="container mb-5 alert alert-danger">
+            <ul class="m-0">
+                <?php foreach ($errors as $error) : ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
     <div class="container">
-        <form method="post" id="product_form" class="needs-validation" >
+        <form method="post" id="product_form" class="needs-validation">
             <fieldset>
                 <div class="row mb-3 g-3 align-items-center">
                     <div class="col-sm-2 col-lg-1">

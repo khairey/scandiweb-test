@@ -69,4 +69,13 @@ class Database
         $statement->bindValue(':value', $product->value);
         $statement->execute();
     }
+
+        public function getProduct($sku)
+    {
+        $statement = $this->pdo->prepare('SELECT * FROM products WHERE sku = :sku');
+        $statement->bindValue(':sku', $sku);
+        $statement->execute();
+
+        return $statement->fetch(PDO::FETCH_ASSOC);
+    }
 }

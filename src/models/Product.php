@@ -2,6 +2,8 @@
 
 namespace src\models;
 
+use src\config\Database;
+
 class Product
 {
     public static array $types = ['DVD', 'Book', 'Furniture'];
@@ -28,7 +30,7 @@ class Product
             $this->type = $this->data['type'];
         }
         if($this->data['type']=='DVD') {
-            $this->value = $this->data['DVD'];
+            $this->value = $this->data['size'];
         }
         if($this->data['type']=='Book') {
             $this->value = $this->data['weight'];
@@ -36,6 +38,21 @@ class Product
         if($this->data['type']=='Furniture') {
             $this->value = 'Dimensions: ' . $this->data['height'] . 'x' . $this->data['width'] . 'x' . $this->data['length'] . ' CM';
         }
+    }
+
+    public function validateSku()
+    {
+        if(!$this->data['sku']) {
+            return "SKU was not provided!";
+        }
+
+        $db = new Database();
+        if ($db->getProduct($this->data['sku'])) {
+            return "SKU already taken!";
+        }
+
+        $this->sku = $this->data['sku'];
+        return "";
     }
 
 }
