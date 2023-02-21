@@ -8,34 +8,24 @@
                 <span class="fs-4">Product Add</span>
             </a>
             <div class="col-md-3 text-end">
-                <button form="product_form" class="btn btn-primary me-2" type="submit">Save</button>
+                <button onclick="saveProduct()" id="submit" disabled class="btn btn-primary me-2" type="submit">Save</button>
                 <a href="/scandiweb-test/" type="button" class="btn btn-warning" type="submit">Cancel</a>
             </div>
         </div>
     </header>
-    <?php if (!empty($errors)) : ?>
-        <div class="container mb-5 alert alert-danger">
-            <ul class="m-0">
-                <?php foreach ($errors as $error) : ?>
-                    <li><?= $error ?></li>
-                <?php endforeach; ?>
-            </ul>
-        </div>
-    <?php endif; ?>
+    <div id="errors" class="container mb-5 alert alert-danger d-none">
+    </div>
     <div class="container">
-        <form method="post" id="product_form" class="needs-validation">
+        <form method="post" id="product_form">
             <fieldset>
                 <div class="row mb-3 g-3 align-items-center">
                     <div class="col-sm-2 col-lg-1">
                         <label for="sku" class="col-form-label">SKU</label>
                     </div>
                     <div class="col-sm-auto position-relative">
-                        <input placeholder="EX: UGCYS7856" required type="text" id="sku" name="sku" class="form-control" value="">
-                        <div id="spinner" class="spinner-border text-primary position-absolute d-none" role="status">
-                            <span class="visually-hidden">Loading...</span>
-                        </div>
+                        <input placeholder="EX: UGCYS7856" onfocusout="checkSKU()" type="text" id="sku" name="sku" class="form-control" value="">
                         <div id="skuFeedback" class="invalid-feedback">
-                            Please choose a SKU.
+                            Please choose not duplicated SKU.
                         </div>
                     </div>
                 </div>
@@ -101,7 +91,7 @@
                 </div>
                 <div class="row mb-3 g-3 align-items-center">
                     <div class="col-sm-2 col-lg-1">
-                        <label for="size" class="col-form-label">Weight (KG)</label>
+                        <label for="weight" class="col-form-label">Weight (KG)</label>
                     </div>
                     <div class="col-sm-auto">
                         <input placeholder="Weight in KG" type="number" step="1" min="1" id="weight" name="weight" class="form-control">

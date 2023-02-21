@@ -10,11 +10,12 @@
     rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
     crossorigin="anonymous">
     <link rel="stylesheet" href="/scandiweb-test/assets/css/main.css">
-    <script defer src="/scandiweb-test/assets/js/main.js"></script>
 </head>
 
 <body>
     <?php echo $content ?>
+    <script defer src="/scandiweb-test/assets/js/main.js"></script>
+    <script defer src="/scandiweb-test/assets/js/jquery.min.js"></script>
 </body>
 
 </html>

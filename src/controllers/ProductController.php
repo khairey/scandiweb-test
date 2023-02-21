@@ -49,4 +49,10 @@ class ProductController
         }
         header('Location: /scandiweb-test');
     }
+    public static function getSku()
+    {
+        header('Content-Type: application/json');
+        $db = new Database();
+        echo json_encode($db->getProduct($_POST['sku']));
+    }
 }
