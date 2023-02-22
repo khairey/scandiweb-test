@@ -21,14 +21,17 @@ class ProductController
         $db = new Database();
         $product = new Product([]);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            
             $productData = [];
             foreach ($_POST as $key => $value) {
                 $productData[$key] = $value;
             }
+            
             $db = new Database();
             $product = new Product($productData);
             $errors[] = $product->validateSku($product->sku);
-            if(empty($errors)){
+            
+            if(count($errors)==1){
                 $db->createProduct($product);
                 header('Location: /scandiweb-test/');
                 exit;

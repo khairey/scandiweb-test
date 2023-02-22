@@ -8,7 +8,7 @@
                 <span class="fs-4">Product Add</span>
             </a>
             <div class="col-md-3 text-end">
-                <button onclick="saveProduct()" id="submit" disabled class="btn btn-primary me-2" type="submit">Save</button>
+                <button onclick="saveProduct()" id="submit"  class="btn btn-primary me-2" type="submit">Save</button>
                 <a href="/scandiweb-test/" type="button" class="btn btn-warning" type="submit">Cancel</a>
             </div>
         </div>
@@ -117,3 +117,19 @@
         </form>
     </div>
 </div>
+
+<script>
+    document
+        .getElementById('productType')
+        .addEventListener('change', function() {
+            'use strict';
+            var vis = document.querySelector('.vis'),
+                target = document.getElementById(this.value);
+            if (vis !== null) {
+                vis.className = 'inv';
+            }
+            if (target !== null) {
+                target.className = 'vis';
+            }
+        });
+</script>

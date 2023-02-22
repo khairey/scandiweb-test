@@ -1,16 +1,3 @@
-document
-    .getElementById('productType')
-    .addEventListener('change', function () {
-        'use strict';
-        var vis = document.querySelector('.vis'),
-            target = document.getElementById(this.value);
-        if (vis !== null) {
-            vis.className = 'inv';
-        }
-        if (target !== null) {
-            target.className = 'vis';
-        }
-    });
 function saveProduct() {
     // Get the value of the input field with id="sku"
     const sku = document.getElementById("sku").value.trim();
@@ -78,12 +65,15 @@ function saveProduct() {
         document.getElementById('errors').classList.remove('d-none');
     } else {
         document.getElementById('errors').classList.add('d-none');
+        $('#submit').removeAttr('onclick');
+        $('#submit').attr('form', 'product_form');
+        $("#submit").click();
     }
 }
 
 function checkSKU() {
     const sku = document.getElementById("sku").value.trim();
-    if (sku.length > 1) {
+    if (sku.length >= 1) {
         $.ajax({
             type: 'post',
             url: "/scandiweb-test/get-sku",
@@ -92,6 +82,7 @@ function checkSKU() {
             },
             success: function (data) {
                 if (data == false) {
+                    document.getElementById('skuFeedback').classList.add('invalid-feedback');
                     document.getElementById("submit").disabled = false;
                 } else {
                     document.getElementById("submit").disabled = true;
