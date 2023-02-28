@@ -5,6 +5,7 @@ namespace src\controllers;
 use src\config\Database;
 use src\config\Render;
 use src\models\Product;
+use src\models\ProductType\DVD;
 
 class ProductController
 {
@@ -28,7 +29,11 @@ class ProductController
             }
             
             $db = new Database();
-            $product = new Product($productData);
+            // $product = new $_POST['type']($productData);
+            $cname = "src\\models\\ProductType\\" . $_POST['type'];
+            if (class_exists($cname)) 
+                $product = new $cname($productData);
+            $product->validateData($productData);
             $errors[] = $product->validateSku($product->sku);
             
             if(count($errors)==1){

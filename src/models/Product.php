@@ -17,6 +17,10 @@ class Product
     public function __construct($input)
     {
         $this->data = $input;
+    }
+
+    public function validateData()
+    {
         if($this->data['sku']) {
             $this->sku = $this->data['sku'];
         }
@@ -29,15 +33,10 @@ class Product
         if($this->data['type']) {
             $this->type = $this->data['type'];
         }
-        if($this->data['type']=='DVD') {
-            $this->value = $this->data['size'];
+        if ($this->validateValue()) {
+            $errors[] = $this->validateValue();
         }
-        if($this->data['type']=='Book') {
-            $this->value = $this->data['weight'];
-        }
-        if($this->data['type']=='Furniture') {
-            $this->value = 'Dimensions: ' . $this->data['height'] . 'x' . $this->data['width'] . 'x' . $this->data['length'] . ' CM';
-        }
+        return $errors;
     }
 
     public function validateSku()
@@ -54,5 +53,6 @@ class Product
         $this->sku = $this->data['sku'];
         return "";
     }
+    protected function  validateValue(){}
 
 }
