@@ -13,6 +13,16 @@
             </div>
         </div>
     </header>
+    <?php if (!empty($errors)) : ?>
+        <div class="container mb-5 alert alert-danger">
+            <h5>Data didn't pass the server-side validation!</h5>
+            <ul class="m-0">
+                <?php foreach ($errors as $error) : ?>
+                    <li><?= $error ?></li>
+                <?php endforeach; ?>
+            </ul>
+        </div>
+    <?php endif; ?>
     <div id="errors" class="container mb-5 alert alert-danger d-none">
     </div>
     <div class="container">

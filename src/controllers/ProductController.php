@@ -18,29 +18,29 @@ class ProductController
     }
     public static function addProduct()
     {
-        $errors=array();
+        $errors = array();
         $db = new Database();
         $product = new Product([]);
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            
+
             $productData = [];
             foreach ($_POST as $key => $value) {
                 $productData[$key] = $value;
             }
-            
+
             $db = new Database();
             // $product = new $_POST['type']($productData);
             $cname = "src\\models\\ProductType\\" . $_POST['type'];
-            if (class_exists($cname)) 
+            if (class_exists($cname)) {
                 $product = new $cname($productData);
-            $product->validateData($productData);
-            $errors[] = $product->validateSku($product->sku);
-            
-            if(count($errors)==1){
-                $db->createProduct($product);
-                header('Location: /scandiweb-test/');
-                exit;
-            }    
+                $errors = $product->validateData($productData);
+                $errors = array_filter($errors);
+                if (empty($errors)) {
+                    $db->createProduct($product);
+                    header('Location: /scandiweb-test/');
+                    exit;
+                }
+            }
         }
         Render::view('add-product', [
             'product' => $product,
